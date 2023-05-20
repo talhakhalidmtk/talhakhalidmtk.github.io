@@ -1879,4 +1879,18 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .timeline-text { max-width: 700px; }
 
+
+
 }
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }
+
+.flex-container > div {
+    margin: 20px;
+  }
+
