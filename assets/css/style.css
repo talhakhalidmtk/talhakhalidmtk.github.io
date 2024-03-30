@@ -1693,6 +1693,12 @@ textarea.form-input::-webkit-resizer { display: none; }
     margin: auto;
   }
 
+  .blog-main-content {
+    position: relative;
+    width: max-content;
+    margin: auto;
+  }
+
 
 
   /**
@@ -1817,6 +1823,14 @@ textarea.form-input::-webkit-resizer { display: none; }
     width: 75%;
     margin: 0;
   }
+
+  .blog-main-content {
+    min-width: 95%;
+    width: 95%;
+    margin: 0;
+  }
+
+
 
 
 

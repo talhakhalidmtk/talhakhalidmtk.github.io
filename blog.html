@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talha Khalid</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+    <!--
+      - #main-content
+    -->
+
+    <div class="blog-main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link" ><a href="https://talhakhalidmtk.me" style="color:white">About</a></button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" ><a href="https://talhakhalidmtk.me" style="color:white">Resume</a></button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" ><a href="https://talhakhalidmtk.me" style="color:white">Projects</a></button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link active" ><a href="https://talhakhalidmtk.me" style="color:#ffdb70">Blog</a></button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">Blog</h2>
+        </header>
+
+        <section class="about-text">
+          <h1 style="color:#ffdb70">Title</h1>
+          <p>Implementing JWT Authorization in Python Microservices with Flask API</p>
+      
+          <h1 style="color:#ffdb70">Introduction</h1>
+          <p>In the realm of backend development, the adoption of microservices architecture has become increasingly popular due to its ability to enhance scalability, flexibility, and maintainability of software systems. One crucial aspect of building secure microservices is implementing robust authentication mechanisms. In this blog post, I'm thrilled to share my journey of integrating JWT (JSON Web Token) authorization as middleware in my Python microservices using Flask API.</p>
+      
+          <h1 style="color:#ffdb70">Why Microservices and Flask API?</h2>
+          <p>Microservices offer a paradigm where large applications are broken down into smaller, independent services, making them easier to manage, deploy, and scale. Flask API, with its simplicity and flexibility, emerges as an excellent choice for building microservices. Its lightweight nature and extensive ecosystem make it an ideal framework for developing scalable and maintainable backend solutions.</p>
+      
+          <h1 style="color:#ffdb70">The Importance of JWT Authentication</h2>
+          <p>Securing communication between microservices is paramount to safeguard sensitive data and prevent unauthorized access. JWT authentication provides a robust solution to this challenge by enabling stateless, token-based authentication. JWTs are cryptographically signed tokens that contain encoded information about the user's identity and any additional claims. These tokens are sent along with requests, allowing services to verify the user's authenticity and permissions without relying on session state.</p>
+      
+          <h1 style="color:#ffdb70">Implementing JWT Authorization with Flask API</h2>
+          <p>Integrating JWT authentication into Flask API involves several steps:</p>
+          <ul>
+              <li><strong>Token Generation:</strong> When a user successfully logs in or authenticates, a JWT token is generated containing relevant user information and permissions.</li>
+              <li><strong>Token Verification:</strong> Each incoming request to protected endpoints is intercepted by middleware, which verifies the JWT token's validity and extracts the user's identity and permissions from it.</li>
+              <li><strong>Access Control:</strong> Based on the user's credentials extracted from the JWT token, access control logic is enforced to determine whether the user is authorized to access the requested resource.</li>
+              <li><strong>Token Refreshing:</strong> To maintain session validity and enhance security, JWT tokens can be configured to expire after a certain period. In such cases, token refreshing mechanisms can be implemented to generate new tokens without requiring users to reauthenticate.</li>
+          </ul>
+      
+          <h1 style="color:#ffdb70">Sharing the Implementation</h2>
+          <p>I've documented the implementation details of JWT authorization in my Python microservices using Flask API on my GitHub repository. You can explore the code, configurations, and usage examples to understand how JWT authentication can be seamlessly integrated into your microservices architecture.</p>
+          <p><a href="[GitHub Link] " style="color:#ffdb70; text-decoration: underline;">GitHub Link</a></p>
+      
+          <h1 style="color:#ffdb70">Conclusion</h2>
+          <p>As I continue to delve deeper into the world of microservices and backend development with Python, integrating robust authentication mechanisms like JWT authorization remains a crucial aspect of my journey. By leveraging Flask API's simplicity and flexibility, along with the power of JWT authentication, I'm confident in building secure and scalable microservices that meet the demands of modern software development.</p>
+          <p>Stay tuned for more updates and insights as I explore further advancements in microservices architecture and backend technologies. Together, let's continue to unlock the potential of Python for building resilient and secure software solutions.</p>
+          <p>Happy coding!</p>
+          <p><strong>Talha Khalid</strong></p>
+      </body>
+        </section>
+
+      </article>
+
+
+
+      
+<!-- Calendly badge widget begin -->
+<link href="assets/css/widget.css" rel="stylesheet">
+<script src="assets/js/widget.js" type="text/javascript" async></script>
+<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/talhakhalidmtk/15min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1e1e1f&text_color=ffffff&primary_color=ffdb70', text: 'schedule time with me', color: '#1e1e1f', textColor: '#ffdb70', branding: undefined }); }</script>
+<!-- Calendly badge widget end -->
+
+
+    </div>
+
+  </main>
+
+
+
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HVXK9NSW1E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HVXK9NSW1E');
+</script>
+
+</body>
+
+</html>
