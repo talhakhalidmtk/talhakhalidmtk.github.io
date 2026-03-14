@@ -1,1053 +1,1124 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Talha Khalid</title>
-
-  <!--
-    - favicon
-  -->
-  <link rel="shortcut icon" href="assets/images/logo.ico" type="image/x-icon">
-
-  <!--
-    - custom css link
-  -->
-  <link rel="stylesheet" href="assets/css/style.css">
-
-  <!--
-    - google font link
-  -->
+  <title>Muhammad Talha Khalid - Integration & Backend Engineer</title>
+  <meta name="description" content="Integration & Backend Engineer. MuleSoft Certified. Python, FastAPI, MuleSoft, AWS, Salesforce.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-</head>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #0a0a0f;
+      --surface:   #13131a;
+      --border:    #2a2a38;
+      --border2:   #3a3a50;
+      --text:      #f0f0f5;
+      --muted:     #a0a0b8;
+      --dim:       #5a5a78;
+      --accent:    #38bdf8;
+      --accent-bg: rgba(56,189,248,0.09);
+      --mono:      'IBM Plex Mono', monospace;
+      --sans:      'IBM Plex Sans', sans-serif;
+    }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 400;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: rgba(56,189,248,0.2); }
+
+    /* CANVAS */
+    #bg-canvas {
+      position: fixed; inset: 0;
+      z-index: 0; pointer-events: none;
+      opacity: 0.25;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 3.5rem;
+      height: 62px;
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .nav-logo em { color: var(--accent); font-style: normal; }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid rgba(56,189,248,0.45);
+      padding: 0.4rem 1rem;
+      border-radius: 3px;
+      letter-spacing: 0.06em;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent-bg); border-color: var(--accent); }
+
+    /* LAYOUT */
+    .wrapper { position: relative; z-index: 1; }
+
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .section--flush {
+      background: var(--surface);
+      border-top: 1px solid var(--border2);
+      border-bottom: 1px solid var(--border2);
+    }
+
+    /* LABELS */
+    .label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .label::before { content: ''; width: 24px; height: 1px; background: var(--accent); opacity: 0.5; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 3.5rem 5rem;
+      max-width: 100%;
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s forwards;
+    }
+
+    h1 {
+      font-family: var(--sans);
+      font-size: clamp(3rem, 6vw, 5.8rem);
+      font-weight: 600;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+
+    h1 .role {
+      display: block;
+      font-size: 0.38em;
+      font-weight: 400;
+      color: var(--dim);
+      letter-spacing: 0.06em;
+      margin-top: 0.7em;
+      font-family: var(--mono);
+    }
+
+    .hero-bio {
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.3s forwards;
+    }
+    .hero-bio strong { color: var(--text); font-weight: 500; }
+
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.4s forwards;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.72rem 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      border-radius: 3px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.18s;
+    }
+    .btn-primary { background: var(--accent); color: #0a0a0f; font-weight: 600; }
+    .btn-primary:hover { background: #7dd3fc; }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border2); }
+    .btn-ghost:hover { color: var(--text); border-color: var(--dim); }
+
+    .hero-pills {
+      display: flex; gap: 0.6rem; flex-wrap: wrap;
+      margin-top: 3.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
+
+    .pill {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      border: 1px solid var(--border2);
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    /* HEADINGS */
+    h2 {
+      font-family: var(--sans);
+      font-size: clamp(1.65rem, 3vw, 2.4rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+      color: var(--text);
+    }
+    h2 span { color: var(--muted); font-weight: 300; }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-body p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+    .about-body p strong { color: var(--text); font-weight: 500; }
+
+    .about-cards {
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .about-card {
+      background: var(--surface);
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .about-card:last-child { border-bottom: none; }
+    .about-card:hover { background: #1c1c28; }
+
+    .about-card-title {
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .about-card p { font-size: 0.88rem; color: var(--text); margin: 0; line-height: 1.5; font-weight: 400; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .skill-col h4 {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .skill-list li {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 0.2rem 0;
+      transition: color 0.15s;
+      cursor: default;
+    }
+    .skill-list li:hover { color: var(--text); }
+    .skill-list li.hi { color: var(--text); font-weight: 500; }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 2.5rem;
+      padding: 2.4rem 0;
+      border-bottom: 1px solid var(--border2);
+    }
+    .exp-item:last-child { border-bottom: none; }
+
+    .exp-meta { padding-top: 0.1rem; }
+
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.63rem;
+      padding: 0.14rem 0.5rem;
+      border-radius: 2px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .badge-now  { background: rgba(56,189,248,0.12); color: var(--accent); border: 1px solid rgba(56,189,248,0.35); }
+    .badge-cert { background: rgba(250,204,21,0.1); color: #fcd34d;        border: 1px solid rgba(250,204,21,0.3); }
+
+    .exp-title {
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .exp-company {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .exp-points { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .exp-points li {
+      font-size: 0.93rem;
+      color: var(--muted);
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.7;
+    }
+    .exp-points li::before {
+      content: '-';
+      position: absolute; left: 0;
+      color: var(--dim);
+      font-size: 0.8rem;
+    }
+    .exp-points li strong { color: var(--text); font-weight: 500; }
+
+    .exp-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1rem; }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      border: 1px solid var(--border2);
+      padding: 0.18rem 0.55rem;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tag:hover { color: var(--text); border-color: var(--dim); }
+
+    .product-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      padding: 2rem 2.2rem;
+      margin-bottom: 2.5rem;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--accent);
+    }
+    .product-card:hover { border-color: rgba(56,189,248,0.5); background: #191924; }
+
+    .product-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.45rem;
+    }
+    .product-card h3 {
+      font-family: var(--sans);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.45rem;
+      color: var(--text);
+    }
+    .product-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.9rem;
+    }
+    .product-url {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+    .product-arrow {
+      font-family: var(--mono);
+      font-size: 1.5rem;
+      color: var(--dim);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .product-card:hover .product-arrow { color: var(--accent); transform: translateX(4px); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .proj-card {
+      background: var(--surface);
+      padding: 1.8rem;
+      border-right: 1px solid var(--border2);
+      border-bottom: 1px solid var(--border2);
+      transition: background 0.2s;
+    }
+    .proj-card:hover { background: #1a1a26; }
+    .proj-card:nth-child(3n)       { border-right: none; }
+    .proj-card:nth-last-child(-n+3) { border-bottom: none; }
+
+    .proj-num {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--dim);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.9rem;
+    }
+
+    .proj-card h3 {
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+
+    .proj-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .proj-stack { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+    .certs-list { display: flex; flex-direction: column; }
+
+    .cert-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border2);
+      gap: 1rem;
+    }
+    .cert-item:first-child { border-top: 1px solid var(--border2); }
+
+    .cert-left { display: flex; align-items: center; gap: 1rem; }
+    .cert-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--border2);
+      flex-shrink: 0;
+    }
+    .cert-dot.hi { background: var(--accent); box-shadow: 0 0 10px rgba(56,189,248,0.6); }
+
+    .cert-name { font-size: 0.93rem; font-weight: 400; color: var(--text); }
+    .cert-link { text-decoration: none; transition: color 0.2s; }
+    .cert-link:hover { color: var(--accent); }
+
+    .cert-issuer {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* CONTACT */
+    #contact { background: var(--surface); border-top: 1px solid var(--border); }
+
+    .contact-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-body h2 { margin-bottom: 0.75rem; }
+    .contact-body p { color: var(--muted); font-size: 0.97rem; margin-bottom: 2rem; line-height: 1.8; }
+
+    .clink {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.95rem 1.2rem;
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      text-decoration: none;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .clink:hover { border-color: var(--dim); background: #13131a; }
+    .clink:hover .clink-label { color: var(--text); }
+
+    .clink-icon {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      width: 22px;
+      flex-shrink: 0;
+    }
+    .clink-info { flex: 1; }
+    .clink-type {
+      font-family: var(--mono);
+      font-size: 0.63rem;
+      color: var(--dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .clink-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border2);
+      padding: 1.5rem 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      #hero { padding: 7rem 1.5rem 4rem; }
+      .section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .exp-date { display: inline; margin-right: 0.5rem; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .proj-card:nth-child(3n)       { border-right: 1px solid var(--border); }
+      .proj-card:nth-child(2n)       { border-right: none; }
+      .proj-card:nth-last-child(-n+2) { border-bottom: none; }
+      .proj-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.4rem; text-align: center; }
+    }
+
+    @media (max-width: 520px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .proj-card { border-right: none !important; }
+      .proj-card:nth-last-child(-n+1) { border-bottom: none; }
+      .proj-card:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .skills-grid { grid-template-columns: 1fr; }
+      .cert-item { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+      .cert-issuer { white-space: normal; }
+    }
+  </style>
+</head>
 <body>
 
-  <!--
-    - #MAIN
-  -->
+<canvas id="bg-canvas"></canvas>
 
-  <main>
+<nav>
+  <a class="nav-logo" href="#hero">talhakhalidmtk<em>.me</em></a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:talhakhalidmtk@gmail.com">hire me</a>
+</nav>
 
-    <!--
-      - #SIDEBAR
-    -->
+<div class="wrapper">
 
-    <aside class="sidebar" data-sidebar>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-tag">Integration &amp; Backend Engineer · MuleSoft Certified</div>
+    <h1>
+      Muhammad<br>Talha Khalid
+      <span class="role">// connecting systems that matter</span>
+    </h1>
+    <p class="hero-bio">
+      I build the integration layer between enterprise platforms -
+      <strong>MuleSoft, FastAPI, Salesforce, Oracle, Stripe</strong> - so data flows
+      reliably at scale. Currently Consultant Integration at
+      <strong>Systems Limited, Lahore</strong>.
+    </p>
+    <div class="hero-actions">
+      <a href="#experience" class="btn btn-primary">View work →</a>
+      <a href="mailto:talhakhalidmtk@gmail.com" class="btn btn-ghost">talhakhalidmtk@gmail.com</a>
+    </div>
+    <div class="hero-pills">
+      <span class="pill">MuleSoft · Anypoint</span>
+      <span class="pill">FastAPI · Django</span>
+      <span class="pill">Salesforce · Oracle</span>
+      <span class="pill">AWS Lambda · SQS</span>
+      <span class="pill">Kafka · Celery</span>
+      <span class="pill">PostgreSQL · DynamoDB</span>
+    </div>
+  </section>
 
-      <div class="sidebar-info">
+  <!-- ABOUT -->
+  <div class="section--flush">
+    <div class="section" id="about">
+      <div class="label">About</div>
+      <div class="about-grid reveal">
+        <div class="about-body">
+          <h2>Integration engineer.<br><span>Full-stack depth.</span></h2>
+          <p>
+            I specialise in <strong>enterprise API integration</strong> - designing event-driven architectures that connect SaaS platforms, cloud databases, and custom backend services without friction.
+          </p>
+          <p>
+            My work spans two disciplines: <strong>MuleSoft / Anypoint Platform</strong> for enterprise integration, and <strong>Python (FastAPI, Django)</strong> for backend services and automation pipelines. Both serve the same goal - systems that don't break.
+          </p>
+          <p>
+            Before Systems Limited, I worked across EdTech, fintech, and large-scale scraping projects - building a strong foundation in <strong>performance, data integrity, and async processing</strong>.
+          </p>
+        </div>
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-title">Current role</div>
+            <p>Consultant Integration · Systems Limited</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-title">Location</div>
+            <p>Lahore, Pakistan</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-title">Certification</div>
+            <p>MuleSoft Certified Developer - Level 01</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-title">Education</div>
+            <p>BSc Software Engineering · NUST · 3.50 GPA</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <figure class="avatar-box">
-          <img src="assets/images/my-avatar.png" width="80">
-        </figure>
+  <!-- SKILLS -->
+  <div class="section" id="skills">
+    <div class="label">Technical Stack</div>
+    <h2>What I work with</h2>
+    <div class="skills-grid reveal">
+      <div class="skill-col">
+        <h4>Integration</h4>
+        <ul class="skill-list">
+          <li class="hi">MuleSoft / Anypoint</li>
+          <li class="hi">DataWeave</li>
+          <li class="hi">CloudHub 1.0 &amp; 2.0</li>
+          <li>API-led Connectivity</li>
+          <li>Platform Events</li>
+          <li>Pub/Sub · VM Queues</li>
+          <li>Bulk API v1 &amp; v2</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>Backend</h4>
+        <ul class="skill-list">
+          <li class="hi">Python</li>
+          <li class="hi">FastAPI</li>
+          <li>Django · DRF · Flask</li>
+          <li>Celery · Kafka</li>
+          <li>Redis · RabbitMQ</li>
+          <li>Selenium · Scrapy</li>
+          <li>Pandas · NumPy</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>Cloud &amp; Data</h4>
+        <ul class="skill-list">
+          <li class="hi">AWS Lambda · SQS</li>
+          <li>AWS EC2 · S3 · RDS</li>
+          <li>PostgreSQL · MySQL</li>
+          <li>DynamoDB</li>
+          <li>ETL pipelines</li>
+          <li>JSON · XML</li>
+          <li>Datadog · Loguru</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>Platforms</h4>
+        <ul class="skill-list">
+          <li class="hi">Salesforce</li>
+          <li class="hi">Oracle</li>
+          <li>Stripe · PayPal</li>
+          <li>Microsoft 365 · D365</li>
+          <li>REST · SOAP · OAuth</li>
+          <li>SQLAlchemy · Pydantic</li>
+          <li>Git</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-        <div class="info-content">
-          <h1 class="name">Talha Khalid</h1>
+  <!-- EXPERIENCE -->
+  <div class="section--flush">
+    <div class="section" id="experience">
+      <div class="label">Experience</div>
+      <h2>Where I've worked</h2>
+      <div class="exp-list reveal">
 
-          <p class="title">Software Engineer</p>
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">Jul 2025<br>Present</div>
+            <span class="exp-badge badge-now">Now</span>
+          </div>
+          <div>
+            <div class="exp-title">Consultant Integration</div>
+            <div class="exp-company">Systems Limited · Lahore</div>
+            <ul class="exp-points">
+              <li>Integrated <strong>Darna Loyalty Program</strong>, Salesforce Marketing Cloud, and mall WiFi via Python microservices for real-time personalised engagement.</li>
+              <li>Built event-driven APIs with <strong>FastAPI &amp; Flask</strong> connecting Salesforce, Oracle, Stripe, and cloud databases.</li>
+              <li>Delivered scalable backend pipelines using <strong>Celery, Redis, and RabbitMQ</strong> for cross-platform automation.</li>
+            </ul>
+            <div class="exp-stack">
+              <span class="tag">FastAPI</span><span class="tag">MuleSoft</span><span class="tag">Salesforce</span>
+              <span class="tag">Oracle</span><span class="tag">Stripe</span><span class="tag">Celery</span><span class="tag">Redis</span>
+            </div>
+          </div>
         </div>
 
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
-
-          <ion-icon name="chevron-down"></ion-icon>
-        </button>
-
-      </div>
-
-      <div class="sidebar-info_more">
-
-        <div class="separator"></div>
-
-        <ul class="contacts-list">
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">Jul 2024<br>Jun 2025</div>
+            <span class="exp-badge badge-cert">MuleSoft</span>
+          </div>
+          <div>
+            <div class="exp-title">Junior Consultant Integration</div>
+            <div class="exp-company">Systems Limited · Lahore</div>
+            <ul class="exp-points">
+              <li>Integrated <strong>Stripe with Django</strong>, processing $2M+ annually at 99.9% payment accuracy.</li>
+              <li>Led API integrations across <strong>FastAPI, AWS Lambda, and relational databases</strong>, reducing manual intervention significantly.</li>
+              <li>Implemented event-driven architecture using <strong>Kafka, Celery, and SQS</strong> for real-time data sync.</li>
+              <li>Optimised service request and notification workflows across microservices and Salesforce.</li>
+            </ul>
+            <div class="exp-stack">
+              <span class="tag">Django</span><span class="tag">FastAPI</span><span class="tag">Kafka</span>
+              <span class="tag">AWS Lambda</span><span class="tag">SQS</span><span class="tag">Salesforce</span><span class="tag">Stripe</span>
             </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Email</p>
-
-              <a href="mailto:talhakhalidmtk@gmail.com" class="contact-link">talhakhalidmtk@gmail.com</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Whatsapp</p>
-
-              <a href="https://wa.me/923217467512" target="_blank" class="contact-link">+92 (321) 746-7512</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-
-              <time datetime="2001-04-07">April 07, 2001</time>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Location</p>
-
-              <address>Lahore, Pakistan</address>
-            </div>
-
-          </li>
-
-        </ul>
-
-        <div class="separator"></div>
-
-        <ul class="social-list">
-<!--
-          <li class="social-item">
-            <a href="https://www.upwork.com/freelancers/~01892c7513b1b2b2ec" class="social-link" target="_blank">
-              <img src="assets/icons/upwork.png">
-            </a>
-          </li>
--->
-          <li class="social-item">
-            <a href="https://github.com/talhakhalidmtk" class="social-link" target="_blank">
-              <ion-icon name="logo-github"></ion-icon>
-            </a>
-          </li>
-
-          <!--           <li class="social-item">-->
-          <!--            <a href="https://www.upwork.com/freelancers/~01892c7513b1b2b2ec/" class="social-link" target="_blank">-->
-          <!--              <ion-icon name="logo-upwork"></ion-icon>-->
-          <!--            </a>-->
-          <!--          </li>-->
-
-          <li class="social-item">
-            <a href="https://www.linkedin.com/in/talha-khalid-mtk/" class="social-link" target="_blank">
-              <ion-icon name="logo-linkedIn"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </aside>
-
-
-
-
-
-    <!--
-      - #main-content
-    -->
-
-    <div class="main-content">
-
-      <!--
-        - #NAVBAR
-      -->
-
-      <nav class="navbar">
-
-        <ul class="navbar-list">
-
-          <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Resume</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Projects</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Blogs</button>
-          </li>
-
-        </ul>
-
-      </nav>
-
-      <!--
-        - #ABOUT
-      -->
-
-      <article class="about  active" data-page="about">
-
-        <header>
-          <h2 class="h2 article-title">About me</h2>
-        </header>
-
-        <section class="about-text">
-          <p>I'm a MuleSoft certified developer and experienced software engineer, specializing in web development, scripting, and automation. My expertise lies in integration, where I excel in connecting different systems, applications, and data sources to streamline business processes and boost efficiency.</p>
-
-<p>I'm skilled at designing and building scalable, efficient, and reliable server-side systems that seamlessly integrate with various platforms and technologies.</p>
-
-<p>With a strong background in programming languages, databases, and web development frameworks, I create top-notch products that meet and exceed client expectations. I also use scripting languages and automation tools to automate repetitive tasks, leading to smoother operations and increased productivity.</p>
-
-<p>I'm dedicated to staying updated with the latest industry trends and best practices to ensure my integration solutions remain cutting-edge. I value teamwork, communication, and collaboration, seeing them as essential for success in any software development project.</p>
-
-        </section>
-
-
-        <!--
-          - service
-        -->
-
-        <section class="service">
-
-          <h3 class="h3 service-title">What i'm doing</h3>
-
-          <ul class="service-list">
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="assets/images/icon-design.svg
-                " alt="design icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Web development</h4>
-
-                <p class="service-item-text">
-                  High-quality development of sites at the professional level.
-                </p>
-
-                <p class="service-item-text"><b>Stack: </b>Python | Postgres | MySQL | SQLServer | Tailwind </p>
-
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="assets/images/icon-dev.svg" alt="Web development icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Scripting and Automation</h4>
-
-                <p class="service-item-text">
-                  Streamline processes and increase efficiency by automating recurring tasks.
-                </p>
-
-                <p class="service-item-text"><b>Stack: </b>Python | Selenium | Beautiful Soup </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="assets/images/icon-dev.svg" alt="Web development icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Web Scraping</h4>
-
-                <p class="service-item-text">
-                  Automates extraction of specific data from websites.
-                </p>
-
-                <p class="service-item-text"><b>Stack: </b>Python | Selenium | Scrapy | bs4 </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="assets/images/icon-dev.svg" alt="Web development icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Integration Frameworks</h4>
-
-                <p class="service-item-text">
-                  Unifying systems seamlessly with MuleSoft integration frameworks, bridging the digital divide.
-                </p>
-
-                <p class="service-item-text"><b>Stack: </b>Mulesoft | Cloudhub | Dataweave | Anypoint Platform </p>
-              </div>
-
-            </li>
-
-          </ul>
-
-        </section>
-
-
-        <!--
-          - testimonials
-        -->
-
-        <section class="testimonials">
-
-          <h3 class="h3 testimonials-title">Testimonials</h3>
-
-          <ul class="testimonials-list has-scrollbar">
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="assets/images/avatar-1.png" alt="AV AIM" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>AV AIM</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    At AV AIM, Talha excelled in designing and developing robust solutions using Django and DRF. His contributions ensured the seamless operation of our autonomous vehicle platform. Talha's expertise, collaboration, and dedication were exceptional. We highly recommend him for his excellent work.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="assets/images/avatar-1.png" alt="Rating The Races" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Rating The Races</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    At Rating The Races, Talha took the helm in creating and enhancing robust solutions with Django and DRF. His leadership ensured the smooth operation of our autonomous vehicle platform. Talha's adeptness at implementing features, refining performance, and tackling scalability challenges truly elevated our user experience. We're grateful for his contributions and highly recommend him for his exceptional work.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="assets/images/avatar-4.png" alt="Viafiorm X SRL" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Viafiorm X SRL</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    I recently worked with Talha on a Django DRF API project and I'm extremely satisfied with the
-                    results. Talha was responsive, understood my business needs, and developed a customized solution
-                    that's fast, reliable, and increased productivity. Their expertise in Django APIs is evident, and I
-                    highly recommend their services to anyone in need of top-notch API development.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="assets/images/avatar-3.png" alt="Emily evans" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Pippin Technologies</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    I had the pleasure of working with Talha Khalid for a web scraping project and I couldn't be happier
-                    with the results. Talha Khalid has an excellent understanding of web scraping tools and techniques,
-                    and was able to deliver high-quality data quickly and efficiently. Their communication and attention
-                    to detail throughout the project was impressive, and they went above and beyond to ensure that the
-                    final output met my requirements. I highly recommend him for any web scraping needs.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-
-                <figure class="testimonials-avatar-box">
-                  <img src="assets/images/avatar-1.png" alt="Ali M" width="60" data-testimonials-avatar>
-                </figure>
-
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Ali M</h4>
-
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    Muhammad, is so much energetic, self motivated and take ownership. He find the best solution even
-                    though I missed to mention. He work hard to make the project better. He is one of the best I have
-                    ever seen! I will definitely work with him again and again.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
-
-        </section>
-
-
-        <!--
-          - testimonials modal
-        -->
-
-        <div class="modal-container" data-modal-container>
-
-          <div class="overlay" data-overlay></div>
-
-          <section class="testimonials-modal">
-
-            <button class="modal-close-btn" data-modal-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
-            <div class="modal-img-wrapper">
-              <figure class="modal-avatar-box">
-                <img src="assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
-              </figure>
-
-              <img src="assets/images/icon-quote.svg" alt="quote icon">
-            </div>
-
-            <div class="modal-content">
-
-              <h4 class="h3 modal-title" data-modal-title>Daniel lewis</h4>
-
-              <time datetime="2021-06-14">14 June, 2021</time>
-
-              <div data-modal-text>
-                <p>
-                  Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                  lot of experience
-                  and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                  consectetur adipiscing
-                  elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                </p>
-              </div>
-
-            </div>
-
-          </section>
-
+          </div>
         </div>
 
-
-      </article>
-
-
-
-
-
-      <!--
-        - #RESUME
-      -->
-
-      <article class="resume" data-page="resume">
-
-        <header>
-          <h2 class="h2 article-title">Resume</h2>
-        </header>
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="school-outline"></ion-icon>
-            </div>
-
-            <h3 class="h3">Education</h3>
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">Jul 2023<br>Jun 2024</div>
           </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">National University of Sciences and Technology</h4>
-
-              <span>2019 — 2023</span>
-
-              <p class="timeline-text">
-                Bachelors in Software Engineering
-              </p>
-
-              <p class="timeline-text">
-                CGPA: 3.50/ 4.00
-              </p>
-
-            </li>
-
-          </ol>
-
-        </section>
-
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-
-            <h3 class="h3">Experience</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Junior Consultant - Systems Limited</h4>
-
-              <span>July 2024 — Present</span>
-              <span><small>Lahore, Pakistan</small></span>
-
-
-              <p class="timeline-text">
-                As a MuleSoft Certified Developer, now promoted to Junior Consultant, I led integrations between Salesforce Service/Sales Cloud, 
-                Microsoft 365, and databases like MySQL, PostgreSQL, and DynamoDB. I leveraged Salesforce connectors, including Platform Events, 
-                Topic Listeners, and Queues, to ensure real-time data synchronization. Additionally, I managed deployments on Cloudhub 1.0 and 2.0, 
-                ensuring scalable and reliable solutions.
-              </p>
-
-            </li>
-
-
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Associate Consultant - Systems Limited</h4>
-
-              <span>July 2023 — June 2024</span>
-              <span><small>Lahore, Pakistan</small></span>
-
-
-              <p class="timeline-text">
-                As a MuleSoft certified developer, I integrated Salesforce Service/Sales Cloud with MySQL, PostgreSQL,
-                and DynamoDB using MuleSoft. This involved setting up seamless connections, implementing Bulk API
-                integrations, and utilizing DataWeave for data transformation. I also used object stores for storage and
-                schedulers for task automation. Deployment was done on Cloudhub 1.0 and 2.0 for scalability and
-                reliability.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Associate Software Engineer - CodeFulcrum</h4>
-
-              <span>January 2023 — June 2023</span>
-              <span><small>Lahore, Pakistan</small></span>
-
-
-              <p class="timeline-text">
-                At CodeFulcrum, I gathered client requirements and developed image processing capabilities to extract
-                text from JSON data and generate images, stored in AWS. Utilizing AWS Lambda and an SQS queue ensured
-                efficient data transfer. Integration of tweepy enhanced Twitter functionality in the Django-based
-                system, alongside Django SMTP for emails, managed smoothly with Celery and signals.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Back End Developer - Hamsan Technology</h4>
-
-              <span>July 2022 — May 2023</span>
-              <span><small>Islamabad, Pakistan</small></span>
-
-
-              <p class="timeline-text">
-                During my tenure at Hamsan Technology, I engaged in client communication and requirement gathering,
-                ensuring a thorough understanding of project needs. Following analysis and solution design, I
-                implemented collaborative learning, personalized recommendation, and dynamic profiling within the EdTech
-                domain using Django Rest Framework and Celery. The deployment of the Django app was executed on an AWS
-                EC2 instance, ensuring accessibility and scalability for users.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Jasper Developer - Software Productivity Strategies</h4>
-
-              <span>July 2022 — August 2022</span>
-              <span><small>Islamabad, Pakistan</small></span>
-
-
-              <p class="timeline-text">
-                As a key contributor at Software Productivity Strategies, I successfully managed and maintained Jasper
-                Reports and Java-based web APIs, ensuring seamless functionality and enhancing overall productivity.
-              </p>
-
-            </li>
-
-          </ol>
-
-        </section>
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="bookmarks-outline"></ion-icon>
-            </div>
-
-            <h3 class="h3">Certifications</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Mulesoft Certified Developer</h4>
-
-              <span><small>Expires August 2025</small></span>
-
-              <p class="timeline-text">
-                Level 01
-              </p>
-
-            </li>
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Introduction to Cyber Security</h4>
-
-              <span><small>Issued Dec 2022</small></span>
-
-              <p class="timeline-text">
-                Cisco Networking Academy
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Scrum Fundamentals Certified (SFC)</h4>
-
-              <span><small>Issued Jan 2021</small></span>
-
-              <p class="timeline-text">
-                Scrum Study MK
-              </p>
-
-            </li>
-
-          </ol>
-
-        </section>
-
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="bookmark-outline"></ion-icon>
-            </div>
-
-            <h3 class="h3">Publications</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title"><a
-                  href="https://www.ojs.ijemd.com/index.php/ComputerScienceAI/article/view/89"
-                  style="color:white;text-decoration: underline;" target="_blank">Modeling and Verification of
-                  Trainify</a></h4>
-
-              <span>International Journal of Emerging Multidisciplinaries · Sep 18, 2022</span>
-
-              <p class="timeline-text">
-                In this paper we have modelled and verified a tennis training app, Trainify, to prevent wrong play in
-                tennis and to also ensure that our tennis athletes or beginners do not hurt themselves in the process of
-                learning or playing tennis.
-              </p>
-
-            </li>
-
-          </ol>
-
-        </section>
-
-
-
-        <section class="skill">
-
-          <h3 class="h3 skills-title">My skills</h3>
-
-          <div class="flex-container content-card">
-            <div>
-              <img src="assets/icons/mulesoft.png" width="250">
-            </div>
-            <div>
-              <img src="assets/icons/python.png">
-            </div>
-            <div>
-              <img src="assets/icons/django.png">
-            </div>
-            <div>
-              <img src="assets/icons/mysql.png">
-            </div>
-            <div>
-              <img src="assets/icons/postgresql.png">
-            </div>
-            <div>
-              <img src="assets/icons/git.png">
-            </div>
-            <div>
-              <img src="assets/icons/html.png">
-            </div>
-            <div>
-              <img src="assets/icons/tailwind.png">
-            </div>
-            <div>
-              <img src="assets/icons/aws.png">
+          <div>
+            <div class="exp-title">Associate Consultant Integration</div>
+            <div class="exp-company">Systems Limited · Lahore</div>
+            <ul class="exp-points">
+              <li>Deployed RESTful APIs with <strong>FastAPI</strong> for enterprise data exchange.</li>
+              <li>Built batch processing pipelines with <strong>Pandas and multiprocessing</strong> for large-scale transactions.</li>
+              <li>Designed data transformation workflows using <strong>Pydantic and Marshmallow</strong> ensuring consistency across systems.</li>
+              <li>Maintained event-driven architectures on <strong>Kafka, Celery, and AWS Lambda</strong>.</li>
+            </ul>
+            <div class="exp-stack">
+              <span class="tag">FastAPI</span><span class="tag">MuleSoft</span><span class="tag">Pandas</span>
+              <span class="tag">Kafka</span><span class="tag">AWS Lambda</span><span class="tag">Celery</span>
             </div>
           </div>
+        </div>
 
-        </section>
-
-      </article>
-
-      <!--
-        - #BLOG
-      -->
-
-      
-<!-- Calendly badge widget begin -->
-<link href="assets/css/widget.css" rel="stylesheet">
-<script src="assets/js/widget.js" type="text/javascript" async></script>
-<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/talhakhalidmtk/15min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1e1e1f&text_color=ffffff&primary_color=ffdb70', text: 'schedule time with me', color: '#1e1e1f', textColor: '#ffdb70', branding: undefined }); }</script>
-<!-- Calendly badge widget end -->
-
-
-      <!--
-        - #CONTACT
-      -->
-
-      <article class="projects" data-page="projects">
-
-        <header>
-          <h2 class="h2 article-title">Projects</h2>
-        </header>
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="school-outline"></ion-icon>
-            </div>
-
-            <h3 class="h3">Integration Frameworks</h3>
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">Jan 2023<br>Jun 2023</div>
           </div>
-
-          <ol class="timeline-list">
-
-                        <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Sapphire</h4>
-
-              <span>MuleSoft Anypoint Platform · MuleSoft CloudHub 1.0 · Dataweave · Salesforce · Data Integration</span>
-
-              <p class="timeline-text">
-                • Conducted comprehensive requirement analysis, followed by development, rigorous testing, and seamless deployment.
-              </p>
-              <p class="timeline-text">
-                • Implemented an API-led Architecture, utilizing System, Process, and Experience APIs for optimal design.
-              </p>
-              <p class="timeline-text">
-                • Engineered APIs to handle critical operations like customer, coupon, gift card, and logistics management.
-              </p>
-                           <p class="timeline-text">
-                • Successfully integrated MuleSoft with Salesforce and Microsoft Dynamics 365 for enhanced interoperability.
-                           </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">BoilerJuice</h4>
-
-              <span>MuleSoft Anypoint Platform · MuleSoft CloudHub 2.0 · Dataweave · Salesforce · Data Integration</span>
-
-              <p class="timeline-text">
-                • Integrated Salesforce v1 and v2 bulk APIs using MuleSoft connectors.
-              </p>
-              <p class="timeline-text">
-                • Integrated MySQL and PostgreSQL databases while leveraging object stores and schedulers for
-                streamlined functionality.
-              </p>
-              <p class="timeline-text">
-                • Deployed MuleSoft flows on CloudHub 2.0 for seamless execution and scalability.
-              </p>
-
-            </li>
-
-          </ol>
-        </section>
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="school-outline"></ion-icon>
+          <div>
+            <div class="exp-title">Associate Software Engineer</div>
+            <div class="exp-company">CodeFulcrum · Lahore</div>
+            <ul class="exp-points">
+              <li>Built and optimised backend APIs with <strong>FastAPI</strong>.</li>
+              <li>Automated web scraping pipelines using <strong>Selenium &amp; Scrapy</strong> for analytics.</li>
+              <li>Integrated Tweepy for Twitter automation and managed <strong>AWS EC2, Lambda, SQS</strong> deployments.</li>
+            </ul>
+            <div class="exp-stack">
+              <span class="tag">FastAPI</span><span class="tag">Selenium</span><span class="tag">Scrapy</span>
+              <span class="tag">AWS</span><span class="tag">Tweepy</span>
             </div>
-
-            <h3 class="h3">Web Scraping</h3>
           </div>
+        </div>
 
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title"><a href="https://pypi.org/project/coursera-scraper/" target="_blank"
-                  style="color: white; text-decoration:underline;">Coursera Scraper</a></h4>
-
-              <span>Python · Selenium · Selenium WebDriver · Beautiful Soup</span>
-
-              <p class="timeline-text">
-                • Utilized Python, Selenium, and BeautifulSoup for web scraping on Coursera, gathering 400,000 rows of
-                course data.
-              </p>
-              <p class="timeline-text">
-                • Engineered personalized course recommendations based on user preferences and course attributes for
-                enhanced candidate engagement.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title"><a href="https://utils-test.datatera.io/docs" target="_blank"
-                  style="color: white; text-decoration:underline;">Datatera</a></h4>
-
-              <span>FastAPI · Python · Selenium WebDriver · Web Scraping · Data Scraping</span>
-
-              <p class="timeline-text">
-                • Developed a robust web application using FastAPI and Swagger, integrating backend processing
-                capabilities with web scraping functionalities.
-              </p>
-              <p class="timeline-text">
-                • Designed an efficient system capable of scraping specific data from any website and transforming it
-                into a predefined structure for further analysis and utilization.
-              </p>
-              <p class="timeline-text">
-                • Implemented advanced features for seamless data retrieval, processing, and presentation, ensuring
-                scalability and flexibility in handling diverse web sources and data formats.
-              </p>
-
-            </li>
-
-          </ol>
-        </section>
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="school-outline"></ion-icon>
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">Jul 2022<br>May 2023</div>
+          </div>
+          <div>
+            <div class="exp-title">Backend Developer</div>
+            <div class="exp-company">Hamsan Technology · Islamabad</div>
+            <ul class="exp-points">
+              <li>Built recommendation engines and collaborative learning features for an <strong>EdTech platform</strong>.</li>
+              <li>Managed async processing with <strong>Celery and FastAPI BackgroundTasks</strong>.</li>
+              <li>Deployed on <strong>AWS EC2</strong> with high availability configuration.</li>
+            </ul>
+            <div class="exp-stack">
+              <span class="tag">Django</span><span class="tag">Celery</span><span class="tag">AWS EC2</span><span class="tag">PostgreSQL</span>
             </div>
-
-            <h3 class="h3">Web Development</h3>
           </div>
+        </div>
 
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">GrepBing</h4>
-
-              <span>Python · Django · PostgreSQL · Amazon Web Services (AWS)</span>
-
-              <p class="timeline-text">
-                An e-learning platform aims at providing conceptual clarity in STEM related courses.
-                Main features include:
-              </p>
-
-              <p class="timeline-text">
-                • Collaborative Learning: Users can engage with peers and instructors to enhance understanding of STEM
-                subjects.
-              </p>
-              <p class="timeline-text">
-                • Personalized Recommendations: Tailored course suggestions based on individual interests and goals.
-              </p>
-              <p class="timeline-text">
-                • Dynamic Profiling: Profiles adapt based on user interactions for customized learning experiences.
-              </p>
-              <p class="timeline-text">
-                • Smart Assessment: Advanced evaluation methods provide real-time feedback for better understanding of
-                STEM concepts.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title"><a href="https://ratingtheraces.com" target="_blank"
-                  style="color: white; text-decoration:underline;">Rating The Races</a></h4>
-
-              <span>Django REST Framework · tweepy api · Celery · django signal</span>
-
-              <p class="timeline-text">• Played a pivotal role in enhancing the functionality and stability of the
-                "Rating the Races" website.</p>
-              <p class="timeline-text">• Identified and resolved critical bugs within the backend infrastructure using a
-                systematic debugging approach.</p>
-              <p class="timeline-text">• Focused on debugging issues related to data processing, user interactions, and
-                system integrations.</p>
-              <p class="timeline-text">• Employed advanced debugging techniques to isolate and address errors
-                efficiently.</p>
-              <p class="timeline-text">• Integrated Tweepy for seamless Twitter integration, allowing automated posting
-                of race ratings and updates.</p>
-              <p class="timeline-text">• Leveraged Django SMTP for seamless email integration, enabling communication
-                with users and stakeholders through automated notifications and alerts.</p>
-              <p class="timeline-text">• Implemented Celery and signals for backend processing, enabling asynchronous
-                task execution and real-time event handling.</p>
-              <p class="timeline-text">• This architecture enhanced the scalability and responsiveness of the system,
-                ensuring smooth operation during peak loads and high user activity periods.</p>
-
-            </li>
-
-          </ol>
-        </section>
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="school-outline"></ion-icon>
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">Jan 2021<br>Jun 2022</div>
+          </div>
+          <div>
+            <div class="exp-title">Freelance Backend Developer</div>
+            <div class="exp-company">Remote</div>
+            <ul class="exp-points">
+              <li>Built RESTful APIs with <strong>Django DRF and FastAPI</strong> for finance, e-commerce, and analytics clients.</li>
+              <li>Integrated <strong>Stripe, PayPal, Facebook Graph API, and Google Ads</strong>.</li>
+              <li>Delivered structured scraping pipelines from 10+ complex websites with Scrapy and Selenium.</li>
+              <li>Deployed production apps on <strong>AWS EC2, S3, RDS, and Lambda</strong>.</li>
+            </ul>
+            <div class="exp-stack">
+              <span class="tag">Django DRF</span><span class="tag">FastAPI</span><span class="tag">Scrapy</span>
+              <span class="tag">Stripe</span><span class="tag">AWS</span>
             </div>
-
-            <h3 class="h3">Scripting & Automation</h3>
           </div>
+        </div>
 
-          <ol class="timeline-list">
+      </div>
+    </div>
+  </div>
 
-            <li class="timeline-item">
+  <!-- PROJECTS -->
+  <div class="section" id="projects">
+    <div class="label">Projects &amp; Products</div>
+    <h2>Selected work</h2>
 
-              <h4 class="h4 timeline-item-title">Integration of Django REST Framework for POS API Development and Java
-                Spring Boot for Print Functionality with Jasper</h4>
+    <!-- KINLYZE FEATURED PRODUCT -->
+    <a href="https://www.kinlyze.com/" target="_blank" rel="noopener" class="product-card reveal">
+      <div>
+        <div class="product-label">Product · Founder</div>
+        <h3>Kinlyze</h3>
+        <p>Kinlyze is a platform that analyzes codebases to map knowledge concentration across engineering teams. It helps organizations identify ownership patterns, detect bus factor risks, and understand who holds critical knowledge in the codebase. This enables teams to reduce knowledge silos and prevent operational risk when engineers leave.</p>
+        <div class="product-url">kinlyze.com ↗</div>
+      </div>
+      <div class="product-arrow">→</div>
+    </a>
 
-              <span>Django REST Framework · Java Development · Java Database Connectivity (JDBC) · Jasper Reports · API
-                Development</span>
+    <div class="projects-grid reveal">
 
-              <p class="timeline-text">• Led the development of a comprehensive Point of Sale (POS) system using Django
-                REST Framework for seamless API creation and management.</p>
-              <p class="timeline-text">• Implemented robust API endpoints to facilitate smooth communication between
-                system components, ensuring efficient data exchange and real-time updates.</p>
-              <p class="timeline-text">• Leveraged Django's ORM capabilities to streamline database operations and
-                maintain data integrity.</p>
-              <p class="timeline-text">• Utilized Java Spring Boot and Jasper for advanced printing functionalities
-                within the POS system.</p>
-              <p class="timeline-text">• Engineered a scalable print module capable of generating dynamic reports and
-                documents using Jasper's powerful reporting engine.</p>
-              <p class="timeline-text">• Integrated Java Spring Boot seamlessly with existing Django infrastructure for
-                smooth interaction between backend systems and the printing module.</p>
+      <div class="proj-card">
+        <div class="proj-num">01</div>
+        <h3>Aldar</h3>
+        <p>Standardised integrations across 13 schools. Scaled PostgreSQL from 5 to 50,000 concurrent transactions. Centralised API gateway for auth and access control.</p>
+        <div class="proj-stack">
+          <span class="tag">Mulesoft</span><span class="tag">Salesforce</span>
+          <span class="tag">Stripe</span><span class="tag">Oracle</span><span class="tag">PostgreSQL</span>
+        </div>
+      </div>
 
-            </li>
+      <div class="proj-card">
+        <div class="proj-num">02</div>
+        <h3>Sapphire</h3>
+        <p>API-led architecture for a major retail brand. Customer, coupon, gift card, and logistics APIs. Integrated Salesforce, OMS Cloud, D365 with Loguru structured logging.</p>
+        <div class="proj-stack">
+          <span class="tag">Mulesoft</span><span class="tag">Cloudhub 2.0</span>
+          <span class="tag">VM Queue</span><span class="tag">Salesforce</span><span class="tag">D365</span>
+        </div>
+      </div>
 
-          </ol>
-        </section>
+      <div class="proj-card">
+        <div class="proj-num">03</div>
+        <h3>BoilerJuice</h3>
+        <p>Salesforce Bulk API v1 &amp; v2 integration for legacy database migration. Custom logging, error-handling, and retry mechanisms for failed transactions.</p>
+        <div class="proj-stack">
+          <span class="tag">MuleSoft</span><span class="tag">DataWeave</span>
+          <span class="tag">Salesforce</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+        </div>
+      </div>
 
-      </article>
+      <div class="proj-card">
+        <div class="proj-num">04</div>
+        <h3>GrepBing EdTech</h3>
+        <p>Personalized learning modules, dynamic profiling, and real-time assessments. AI-driven recommendations deployed on AWS EC2 for high availability.</p>
+        <div class="proj-stack">
+          <span class="tag">Django</span><span class="tag">PostgreSQL</span>
+          <span class="tag">AWS EC2</span><span class="tag">Celery</span>
+        </div>
+      </div>
 
-      <article class="blogs" data-page="blogs">
+      <div class="proj-card">
+        <div class="proj-num">05</div>
+        <h3>Coursera Scraper</h3>
+        <p>Scraped 400,000 rows of course data. Personalised recommendation engine based on user preferences and course attributes. Published to PyPI.</p>
+        <div class="proj-stack">
+          <span class="tag">Python</span><span class="tag">Selenium</span>
+          <span class="tag">BeautifulSoup</span><span class="tag">PyPI</span>
+        </div>
+      </div>
 
-        <header>
-          <h2 class="h2 article-title">Blogs</h2>
-        </header>
-
-        <section class="blog-posts">
-
-          <ul class="blog-posts-list">
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="assets/blogs/flask.jfif" alt="JWT Authorization in Python Microservices with Flask API" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Development</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">March 30, 2024</time>
-                  </div>
-
-                  <h3 class="h4 blog-item-title">JWT Authorization in Python Microservices with Flask API</h3>
-
-                  <p class="blog-text">
-                    Explore the seamless integration of JWT authentication in Python microservices using Flask API, ensuring robust security and access control in your applications.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            
-          </ul>
-
-        </section>
-
-      </article>
-
+      <div class="proj-card">
+        <div class="proj-num">06</div>
+        <h3>Datatera</h3>
+        <p>FastAPI + Swagger app that scrapes, transforms, and structures data from any website into predefined schemas for analytics consumption.</p>
+        <div class="proj-stack">
+          <span class="tag">FastAPI</span><span class="tag">Python</span>
+          <span class="tag">Selenium</span><span class="tag">Swagger</span>
+        </div>
+      </div>
 
     </div>
+  </div>
 
-  </main>
+  <!-- CREDENTIALS -->
+  <div class="section--flush">
+    <div class="section" id="credentials">
+      <div class="label">Credentials</div>
+      <h2>Education &amp; certifications</h2>
+      <div class="certs-list reveal">
+        <div class="cert-item">
+          <div class="cert-left">
+            <div class="cert-dot hi"></div>
+            <div class="cert-name">MuleSoft Certified Developer - Level 01</div>
+          </div>
+          <div class="cert-issuer">Salesforce / MuleSoft</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-left">
+            <div class="cert-dot hi"></div>
+            <div class="cert-name">BSc Software Engineering · CGPA 3.50/4.00</div>
+          </div>
+          <div class="cert-issuer">NUST · 2019–2023</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-left">
+            <div class="cert-dot"></div>
+            <div class="cert-name">Scrum Fundamentals Certified (SFC)</div>
+          </div>
+          <div class="cert-issuer">Scrum Study · Jan 2021</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-left">
+            <div class="cert-dot"></div>
+            <div class="cert-name">Introduction to Cyber Security</div>
+          </div>
+          <div class="cert-issuer">Cisco · Dec 2022</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-left">
+            <div class="cert-dot"></div>
+            <a href="https://www.ojs.ijemd.com/index.php/ComputerScienceAI/article/view/89" target="_blank" rel="noopener" class="cert-name cert-link">Modeling &amp; Verification of Trainify ↗</a>
+          </div>
+          <div class="cert-issuer">IJEMD · Sep 2022</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- CONTACT -->
+  <div id="contact">
+    <div class="contact-inner reveal">
+      <div class="contact-body">
+        <div class="label">Contact</div>
+        <h2>Let's work<br><span>together.</span></h2>
+        <p>Open to integration consulting, backend engineering roles, and interesting technical problems. Reach out directly - I respond fast.</p>
+        <a href="mailto:talhakhalidmtk@gmail.com" class="btn btn-primary">Send an email →</a>
+      </div>
+      <div>
+        <a href="mailto:talhakhalidmtk@gmail.com" class="clink">
+          <div class="clink-icon">@</div>
+          <div class="clink-info">
+            <div class="clink-type">Email</div>
+            <div class="clink-label">talhakhalidmtk@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/talha-khalid-mtk/" target="_blank" rel="noopener" class="clink">
+          <div class="clink-icon">in</div>
+          <div class="clink-info">
+            <div class="clink-type">LinkedIn</div>
+            <div class="clink-label">talha-khalid-mtk</div>
+          </div>
+        </a>
+        <a href="https://github.com/talhakhalidmtk" target="_blank" rel="noopener" class="clink">
+          <div class="clink-icon">gh</div>
+          <div class="clink-info">
+            <div class="clink-type">GitHub</div>
+            <div class="clink-label">talhakhalidmtk</div>
+          </div>
+        </a>
+        <a href="https://wa.me/923217467512" target="_blank" rel="noopener" class="clink">
+          <div class="clink-icon">wa</div>
+          <div class="clink-info">
+            <div class="clink-type">WhatsApp</div>
+            <div class="clink-label">+92 321 746-7512</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 
+</div>
 
+<footer>
+  <span>© 2026 Muhammad Talha Khalid</span>
+  <span>talhakhalidmtk.me</span>
+  <span>Lahore, Pakistan</span>
+</footer>
 
+<script>
+/* NODE CANVAS */
+(function() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let nodes = [], W, H;
 
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
 
-  <!--
-    - custom js link
-  -->
-  <script src="assets/js/script.js"></script>
+  function init() {
+    nodes = [];
+    const n = Math.min(Math.floor((W * H) / 22000), 50);
+    for (let i = 0; i < n; i++) {
+      nodes.push({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22
+      });
+    }
+  }
 
-  <!--
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    for (const n of nodes) {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    }
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if (d < 150) {
+          ctx.strokeStyle = `rgba(56,189,248,${(1 - d/150) * 0.45})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    for (const n of nodes) {
+      ctx.fillStyle = 'rgba(56,189,248,0.5)';
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 1.4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
 
-<!-- Google tag (gtag.js) -->
+  resize(); init(); draw();
+  window.addEventListener('resize', () => { resize(); init(); });
+})();
+
+/* SCROLL REVEAL */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVXK9NSW1E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -1058,5 +1129,4 @@
 </script>
 
 </body>
-
 </html>
