@@ -322,7 +322,6 @@
     }
     .badge-now  { background: rgba(56,189,248,0.12); color: var(--accent); border: 1px solid rgba(56,189,248,0.35); }
     .badge-cert { background: rgba(250,204,21,0.1); color: #fcd34d;        border: 1px solid rgba(250,204,21,0.3); }
-
     .exp-title {
       font-family: var(--sans);
       font-size: 1.05rem;
@@ -441,8 +440,11 @@
       transition: background 0.2s;
     }
     .proj-card:hover { background: #1a1a26; }
-    .proj-card:nth-child(3n)       { border-right: none; }
+    .proj-card:nth-child(3n)        { border-right: none; }
     .proj-card:nth-last-child(-n+3) { border-bottom: none; }
+    /* For 8 cards (3+3+2), last row has 2 cards - remove bottom border */
+    .proj-card:nth-child(7),
+    .proj-card:nth-child(8)         { border-bottom: none; }
 
     .proj-num {
       font-family: var(--mono);
@@ -613,11 +615,12 @@
 <canvas id="bg-canvas"></canvas>
 
 <nav>
-  <a class="nav-logo" href="#hero">talhakhalidmtk<em>.me</em></a>
+  <a class="nav-logo" href="#hero">talhakhalid<em>.mtk</em></a>
   <ul class="nav-links">
     <li><a href="#about">about</a></li>
     <li><a href="#experience">experience</a></li>
     <li><a href="#projects">projects</a></li>
+    <li><a href="#publications">publications</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
   <a class="nav-cta" href="mailto:talhakhalidmtk@gmail.com">hire me</a>
@@ -634,7 +637,7 @@
     </h1>
     <p class="hero-bio">
       I build the integration layer between enterprise platforms -
-      <strong>MuleSoft, Salesforce, Oracle, Stripe</strong> - so data flows
+      <strong>MuleSoft, Salesforce, Oracle, Stripe, Python</strong> - so data flows
       reliably at scale. Currently Consultant Integration at
       <strong>Systems Limited, Lahore</strong>.
     </p>
@@ -644,11 +647,11 @@
     </div>
     <div class="hero-pills">
       <span class="pill">MuleSoft · Anypoint</span>
-      <span class="pill">FastAPI · Django</span>
+      <span class="pill">Python · FastAPI</span>
       <span class="pill">Salesforce · Oracle</span>
       <span class="pill">AWS Lambda · SQS</span>
-      <span class="pill">Kafka · Celery</span>
-      <span class="pill">PostgreSQL · DynamoDB</span>
+      <span class="pill">Celery · Redis</span>
+      <span class="pill">PostgreSQL · MySQL</span>
     </div>
   </section>
 
@@ -699,12 +702,12 @@
       <div class="skill-col">
         <h4>Integration</h4>
         <ul class="skill-list">
-          <li class="hi">MuleSoft / Anypoint</li>
+          <li class="hi">MuleSoft · Anypoint Platform</li>
           <li class="hi">DataWeave</li>
           <li class="hi">CloudHub 1.0 &amp; 2.0</li>
           <li>API-led Connectivity</li>
-          <li>Platform Events</li>
-          <li>Pub/Sub · VM Queues</li>
+          <li>Platform Events · VM Queues</li>
+          <li>Pub/Sub · Object Stores</li>
           <li>Bulk API v1 &amp; v2</li>
         </ul>
       </div>
@@ -712,12 +715,12 @@
         <h4>Backend</h4>
         <ul class="skill-list">
           <li class="hi">Python</li>
-          <li class="hi">FastAPI</li>
-          <li>Django · DRF · Flask</li>
-          <li>Celery · Kafka</li>
-          <li>Redis · RabbitMQ</li>
+          <li class="hi">FastAPI · Django · Flask</li>
+          <li>Celery · Redis · RabbitMQ</li>
           <li>Selenium · Scrapy</li>
           <li>Pandas · NumPy</li>
+          <li>REST · SOAP</li>
+          <li>Git</li>
         </ul>
       </div>
       <div class="skill-col">
@@ -727,7 +730,7 @@
           <li>AWS EC2 · S3 · RDS</li>
           <li>PostgreSQL · MySQL</li>
           <li>DynamoDB</li>
-          <li>ETL pipelines</li>
+          <li>ETL Pipelines</li>
           <li>JSON · XML</li>
           <li>Datadog · Loguru</li>
         </ul>
@@ -738,10 +741,10 @@
           <li class="hi">Salesforce</li>
           <li class="hi">Oracle</li>
           <li>Stripe · PayPal</li>
-          <li>Microsoft 365 · D365</li>
-          <li>REST · SOAP · OAuth</li>
-          <li>SQLAlchemy · Pydantic</li>
-          <li>Git</li>
+          <li>Microsoft 365</li>
+          <li>OMS Cloud</li>
+          <li>iSAMS · PowerSchool</li>
+          <li>SQLAlchemy</li>
         </ul>
       </div>
     </div>
@@ -754,6 +757,7 @@
       <h2>Where I've worked</h2>
       <div class="exp-list reveal">
 
+        <!-- Consultant -->
         <div class="exp-item">
           <div class="exp-meta">
             <div class="exp-date">Jul 2025<br>Present</div>
@@ -763,17 +767,19 @@
             <div class="exp-title">Consultant Integration</div>
             <div class="exp-company">Systems Limited · Lahore</div>
             <ul class="exp-points">
-              <li>Integrated <strong>Darna Loyalty Program</strong>, Salesforce Marketing Cloud, and mall WiFi via Python microservices for real-time personalised engagement.</li>
-              <li>Built event-driven APIs with <strong>FastAPI &amp; Flask</strong> connecting Salesforce, Oracle, Stripe, and cloud databases.</li>
-              <li>Delivered scalable backend pipelines using <strong>Celery, Redis, and RabbitMQ</strong> for cross-platform automation.</li>
+              <li>Integrated <strong>Darna Loyalty Program</strong> with Salesforce and Oracle, enabling real-time points sync and personalised customer journeys.</li>
+              <li>Connected <strong>Salesforce Marketing Cloud</strong> with transactional systems to trigger automated campaigns based on user behaviour.</li>
+              <li>Delivered mall WiFi onboarding integration, capturing consent and syncing data for targeted marketing.</li>
+              <li>Built scalable, event-driven integrations using <strong>MuleSoft, Platform Events, and VM Queues</strong> across Salesforce, Stripe, Oracle, and cloud databases.</li>
             </ul>
             <div class="exp-stack">
-              <span class="tag">FastAPI</span><span class="tag">MuleSoft</span><span class="tag">Salesforce</span>
-              <span class="tag">Oracle</span><span class="tag">Stripe</span><span class="tag">Celery</span><span class="tag">Redis</span>
+              <span class="tag">MuleSoft</span><span class="tag">Salesforce</span><span class="tag">Oracle</span>
+              <span class="tag">Stripe</span><span class="tag">Platform Events</span><span class="tag">VM Queues</span>
             </div>
           </div>
         </div>
 
+        <!-- Junior Consultant -->
         <div class="exp-item">
           <div class="exp-meta">
             <div class="exp-date">Jul 2024<br>Jun 2025</div>
@@ -783,18 +789,19 @@
             <div class="exp-title">Junior Consultant Integration</div>
             <div class="exp-company">Systems Limited · Lahore</div>
             <ul class="exp-points">
-              <li>Integrated <strong>Stripe with Django</strong>, processing $2M+ annually at 99.9% payment accuracy.</li>
-              <li>Led API integrations across <strong>FastAPI, AWS Lambda, and relational databases</strong>, reducing manual intervention significantly.</li>
-              <li>Implemented event-driven architecture using <strong>Kafka, Celery, and SQS</strong> for real-time data sync.</li>
-              <li>Optimised service request and notification workflows across microservices and Salesforce.</li>
+              <li>Integrated <strong>Stripe with Salesforce &amp; Oracle</strong>, ensuring 99.9% payment accuracy for $2M+ in annual transactions.</li>
+              <li>Optimised notification and service request workflows between Oracle and Salesforce for improved operational efficiency.</li>
+              <li>Led integrations across <strong>Salesforce Service/Sales Cloud</strong>, Microsoft 365, and databases (MySQL, PostgreSQL, DynamoDB).</li>
+              <li>Utilised Salesforce connectors - <strong>Platform Events, Topic Listeners, VM Queues</strong> - for real-time updates and event-driven automation.</li>
             </ul>
             <div class="exp-stack">
-              <span class="tag">Django</span><span class="tag">FastAPI</span><span class="tag">Kafka</span>
-              <span class="tag">AWS Lambda</span><span class="tag">SQS</span><span class="tag">Salesforce</span><span class="tag">Stripe</span>
+              <span class="tag">MuleSoft</span><span class="tag">Salesforce</span><span class="tag">Stripe</span>
+              <span class="tag">Oracle</span><span class="tag">Microsoft 365</span><span class="tag">DataWeave</span>
             </div>
           </div>
         </div>
 
+        <!-- Associate Consultant -->
         <div class="exp-item">
           <div class="exp-meta">
             <div class="exp-date">Jul 2023<br>Jun 2024</div>
@@ -803,71 +810,76 @@
             <div class="exp-title">Associate Consultant Integration</div>
             <div class="exp-company">Systems Limited · Lahore</div>
             <ul class="exp-points">
-              <li>Deployed RESTful APIs with <strong>FastAPI</strong> for enterprise data exchange.</li>
-              <li>Built batch processing pipelines with <strong>Pandas and multiprocessing</strong> for large-scale transactions.</li>
-              <li>Designed data transformation workflows using <strong>Pydantic and Marshmallow</strong> ensuring consistency across systems.</li>
-              <li>Maintained event-driven architectures on <strong>Kafka, Celery, and AWS Lambda</strong>.</li>
+              <li>Integrated <strong>Salesforce Service/Sales Cloud</strong> with databases using MuleSoft, ensuring seamless cross-platform data flow.</li>
+              <li>Implemented <strong>Salesforce Bulk API v1 &amp; v2</strong> for high-volume data transactions.</li>
+              <li>Developed event-driven integrations using <strong>Platform Events, VM Queues</strong>, deployed on CloudHub 1.0 &amp; 2.0.</li>
+              <li>Optimised <strong>DataWeave</strong> transformations and automated scheduled tasks for enhanced system performance.</li>
             </ul>
             <div class="exp-stack">
-              <span class="tag">FastAPI</span><span class="tag">MuleSoft</span><span class="tag">Pandas</span>
-              <span class="tag">Kafka</span><span class="tag">AWS Lambda</span><span class="tag">Celery</span>
+              <span class="tag">MuleSoft</span><span class="tag">DataWeave</span><span class="tag">Salesforce</span>
+              <span class="tag">CloudHub 1.0</span><span class="tag">CloudHub 2.0</span><span class="tag">Bulk API</span>
             </div>
           </div>
         </div>
 
+        <!-- CodeFulcrum -->
         <div class="exp-item">
           <div class="exp-meta">
             <div class="exp-date">Jan 2023<br>Jun 2023</div>
           </div>
           <div>
             <div class="exp-title">Associate Software Engineer</div>
-            <div class="exp-company">CodeFulcrum · Lahore</div>
+            <div class="exp-company">CodeFulcrum · Lahore · Remote</div>
             <ul class="exp-points">
-              <li>Built and optimised backend APIs with <strong>FastAPI</strong>.</li>
-              <li>Automated web scraping pipelines using <strong>Selenium &amp; Scrapy</strong> for analytics.</li>
-              <li>Integrated Tweepy for Twitter automation and managed <strong>AWS EC2, Lambda, SQS</strong> deployments.</li>
+              <li>Built backend APIs with <strong>Django REST Framework</strong> and integrated RESTful APIs for data processing.</li>
+              <li>Developed web scraping &amp; automation pipelines using <strong>Selenium &amp; Scrapy</strong>.</li>
+              <li>Implemented email automation with <strong>Django SMTP, Celery</strong>, and Tweepy for Twitter API integrations.</li>
+              <li>Deployed and scaled applications on <strong>AWS EC2, SQS, and Lambda</strong>.</li>
             </ul>
             <div class="exp-stack">
-              <span class="tag">FastAPI</span><span class="tag">Selenium</span><span class="tag">Scrapy</span>
-              <span class="tag">AWS</span><span class="tag">Tweepy</span>
+              <span class="tag">Django DRF</span><span class="tag">Selenium</span><span class="tag">Scrapy</span>
+              <span class="tag">Celery</span><span class="tag">AWS EC2</span><span class="tag">Tweepy</span>
             </div>
           </div>
         </div>
 
+        <!-- Hamsan -->
         <div class="exp-item">
           <div class="exp-meta">
             <div class="exp-date">Jul 2022<br>Dec 2022</div>
           </div>
           <div>
-            <div class="exp-title">Backend Developer</div>
-            <div class="exp-company">Hamsan Technology · Islamabad</div>
+            <div class="exp-title">Back End Developer</div>
+            <div class="exp-company">HamsanTech · Islamabad · On-site</div>
             <ul class="exp-points">
-              <li>Built recommendation engines and collaborative learning features for an <strong>EdTech platform</strong>.</li>
-              <li>Managed async processing with <strong>Celery and FastAPI BackgroundTasks</strong>.</li>
-              <li>Deployed on <strong>AWS EC2</strong> with high availability configuration.</li>
+              <li>Developed personalised learning &amp; recommendation systems for an <strong>EdTech platform</strong>.</li>
+              <li>Created dynamic user profiling &amp; real-time background task handling with <strong>Celery &amp; Django Signals</strong>.</li>
+              <li>Deployed <strong>Django</strong> applications on AWS EC2, ensuring scalability and performance.</li>
             </ul>
             <div class="exp-stack">
-              <span class="tag">Django</span><span class="tag">Celery</span><span class="tag">AWS EC2</span><span class="tag">PostgreSQL</span>
+              <span class="tag">Django</span><span class="tag">Celery</span><span class="tag">AWS EC2</span>
+              <span class="tag">PostgreSQL</span><span class="tag">Django Signals</span>
             </div>
           </div>
         </div>
 
+        <!-- SPS Internship -->
         <div class="exp-item">
           <div class="exp-meta">
-            <div class="exp-date">Jan 2021<br>Jun 2022</div>
+            <div class="exp-date">Jul 2022<br>Aug 2022</div>
+            <span class="exp-badge badge-cert">Internship</span>
           </div>
           <div>
-            <div class="exp-title">Freelance Backend Developer</div>
-            <div class="exp-company">Remote</div>
+            <div class="exp-title">Jasper Developer</div>
+            <div class="exp-company">Software Productivity Strategists (SPS) · Islamabad · Hybrid</div>
             <ul class="exp-points">
-              <li>Built RESTful APIs with <strong>Django DRF and FastAPI</strong> for finance, e-commerce, and analytics clients.</li>
-              <li>Integrated <strong>Stripe, PayPal, Facebook Graph API, and Google Ads</strong>.</li>
-              <li>Delivered structured scraping pipelines from 10+ complex websites with Scrapy and Selenium.</li>
-              <li>Deployed production apps on <strong>AWS EC2, S3, RDS, and Lambda</strong>.</li>
+              <li>Managed and maintained <strong>Jasper Reports</strong> and Java-based Web APIs for financial applications.</li>
+              <li>Developed and optimised Java backend services using <strong>Spring Boot &amp; JDBC</strong> for data processing.</li>
+              <li>Worked with <strong>Microsoft SQL Server</strong>, ensuring efficient database connectivity and query optimisation.</li>
             </ul>
             <div class="exp-stack">
-              <span class="tag">Django DRF</span><span class="tag">FastAPI</span><span class="tag">Scrapy</span>
-              <span class="tag">Stripe</span><span class="tag">AWS</span>
+              <span class="tag">Jasper Reports</span><span class="tag">Java</span><span class="tag">Spring Boot</span>
+              <span class="tag">JDBC</span><span class="tag">SQL Server</span>
             </div>
           </div>
         </div>
@@ -886,7 +898,7 @@
       <div>
         <div class="product-label">Product · Founder</div>
         <h3>Kinlyze</h3>
-        <p>Kinlyze is a platform that analyzes codebases to map knowledge concentration across engineering teams. It helps organizations identify ownership patterns, detect bus factor risks, and understand who holds critical knowledge in the codebase. This enables teams to reduce knowledge silos and prevent operational risk when engineers leave.</p>
+        <p>An analytics and intelligence product built to surface actionable insights from complex data. Designed and developed end-to-end - from backend architecture to product delivery.</p>
         <div class="product-url">kinlyze.com ↗</div>
       </div>
       <div class="product-arrow">→</div>
@@ -897,63 +909,119 @@
       <div class="proj-card">
         <div class="proj-num">01</div>
         <h3>Aldar</h3>
-        <p>Standardised integrations across 13 schools. Scaled PostgreSQL from 5 to 50,000 concurrent transactions. Centralised API gateway for auth and access control.</p>
+        <p>Deployed MuleSoft APIs on CloudHub 1.0 &amp; 2.0 integrating Stripe, Oracle, Salesforce, and the Darna Loyalty Program. Connected iSAMS and PowerSchool SIS platforms across 13 schools with bi-directional real-time data sync.</p>
         <div class="proj-stack">
-          <span class="tag">Mulesoft</span><span class="tag">Salesforce</span>
-          <span class="tag">Stripe</span><span class="tag">Oracle</span><span class="tag">PostgreSQL</span>
+          <span class="tag">MuleSoft</span><span class="tag">DataWeave</span>
+          <span class="tag">CloudHub 2.0</span><span class="tag">Salesforce</span>
+          <span class="tag">Oracle</span><span class="tag">Stripe</span>
         </div>
+        <a href="https://www.aldar.com/en/explore-aldar/live-aldar" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.8rem;font-family:var(--mono);font-size:0.65rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em;">aldar.com ↗</a>
       </div>
 
       <div class="proj-card">
         <div class="proj-num">02</div>
         <h3>Sapphire</h3>
-        <p>API-led architecture for a major retail brand. Customer, coupon, gift card, and logistics APIs. Integrated Salesforce, OMS Cloud, D365 with Loguru structured logging.</p>
+        <p>Implemented API-led architecture with System, Process, and Experience APIs for customer, coupon, gift card, and logistics management. Integrated Salesforce, OMS Cloud, and Microsoft Dynamics 365.</p>
         <div class="proj-stack">
-          <span class="tag">Mulesoft</span><span class="tag">Cloudhub 2.0</span>
-          <span class="tag">VM Queue</span><span class="tag">Salesforce</span><span class="tag">D365</span>
+          <span class="tag">MuleSoft</span><span class="tag">DataWeave</span>
+          <span class="tag">CloudHub 1.0</span><span class="tag">Salesforce</span><span class="tag">D365</span>
         </div>
+        <a href="https://pk.sapphireonline.pk/" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.8rem;font-family:var(--mono);font-size:0.65rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em;">sapphireonline.pk ↗</a>
       </div>
 
       <div class="proj-card">
         <div class="proj-num">03</div>
         <h3>BoilerJuice</h3>
-        <p>Salesforce Bulk API v1 &amp; v2 integration for legacy database migration. Custom logging, error-handling, and retry mechanisms for failed transactions.</p>
+        <p>Integrated Salesforce Bulk API v1 &amp; v2 for legacy database migration. Integrated MySQL and PostgreSQL with object stores and schedulers. Deployed flows on CloudHub 2.0 with custom logging and retry mechanisms.</p>
         <div class="proj-stack">
           <span class="tag">MuleSoft</span><span class="tag">DataWeave</span>
-          <span class="tag">Salesforce</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+          <span class="tag">CloudHub 2.0</span><span class="tag">Salesforce</span>
+          <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
         </div>
+        <a href="https://www.boilerjuice.com/uk" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.8rem;font-family:var(--mono);font-size:0.65rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em;">boilerjuice.com ↗</a>
       </div>
 
       <div class="proj-card">
         <div class="proj-num">04</div>
-        <h3>GrepBing EdTech</h3>
-        <p>Personalized learning modules, dynamic profiling, and real-time assessments. AI-driven recommendations deployed on AWS EC2 for high availability.</p>
+        <h3>Lumina Forms</h3>
+        <p>Integrated Paddle &amp; Polar payment platforms with subscription-based models. Built separate Admin and User dashboards giving admins full subscription visibility and control - including enable/disable per subscription.</p>
         <div class="proj-stack">
-          <span class="tag">Django</span><span class="tag">PostgreSQL</span>
-          <span class="tag">AWS EC2</span><span class="tag">Celery</span>
+          <span class="tag">FastAPI</span><span class="tag">Paddle</span>
+          <span class="tag">Polar</span><span class="tag">Subscriptions</span>
         </div>
+        <a href="https://luminaforms.com/" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.8rem;font-family:var(--mono);font-size:0.65rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em;">luminaforms.com ↗</a>
       </div>
 
       <div class="proj-card">
         <div class="proj-num">05</div>
-        <a href="https://pypi.org/project/coursera-scraper/" target="_blank" style="color: white; text-decoration:underline;">Coursera Scraper</a>
-        <p>Scraped 400,000 rows of course data. Personalised recommendation engine based on user preferences and course attributes. Published to PyPI.</p>
+        <h3>Moara</h3>
+        <p>AI-powered academic research platform connecting scholarly databases with intelligent automation. Built backend with FastAPI, integrated AI-driven document processing, and engineered AWS S3 data pipelines for large-scale literature ingestion.</p>
         <div class="proj-stack">
-          <span class="tag">Python</span><span class="tag">Selenium</span>
-          <span class="tag">BeautifulSoup</span><span class="tag">PyPI</span>
+          <span class="tag">FastAPI</span><span class="tag">AWS S3</span>
+          <span class="tag">Gen-AI</span><span class="tag">Python</span>
         </div>
+        <a href="https://www.moara.io/" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.8rem;font-family:var(--mono);font-size:0.65rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em;">moara.io ↗</a>
       </div>
 
       <div class="proj-card">
         <div class="proj-num">06</div>
         <h3>Datatera</h3>
-        <p>FastAPI + Swagger app that scrapes, transforms, and structures data from any website into predefined schemas for analytics consumption.</p>
+        <p>High-performance web scraping API using FastAPI with async processing for concurrent tasks. Extracts and transforms data from any website into unified schemas. Achieved 80% faster response times than Flask-based alternatives. Deployed on AWS EC2 with JWT authentication.</p>
         <div class="proj-stack">
-          <span class="tag">FastAPI</span><span class="tag">Python</span>
-          <span class="tag">Selenium</span><span class="tag">Swagger</span>
+          <span class="tag">FastAPI</span><span class="tag">Selenium</span>
+          <span class="tag">AWS EC2</span><span class="tag">JWT</span><span class="tag">Swagger</span>
+        </div>
+        <a href="https://datatera.ai/" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.8rem;font-family:var(--mono);font-size:0.65rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em;">datatera.ai ↗</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-num">07</div>
+        <h3>Grepbing EdTech</h3>
+        <p>AI-powered e-learning platform with personalised course recommendations, real-time feedback, and collaborative learning. Funded by the Pakistan Engineering Council (PEC). Deployed on AWS with adaptive assessments and dynamic profiling.</p>
+        <div class="proj-stack">
+          <span class="tag">Django</span><span class="tag">PostgreSQL</span>
+          <span class="tag">AWS EC2</span><span class="tag">ML</span><span class="tag">Celery</span>
         </div>
       </div>
 
+      <div class="proj-card">
+        <div class="proj-num">08</div>
+        <h3>Coursera Scraper</h3>
+        <p>Scraped and structured 400,000+ courses - title, instructor, ratings, categories. Built a fully automated data refresh pipeline and personalised recommendation engine. Reduced manual extraction from weeks to minutes. Published as a PyPI module.</p>
+        <div class="proj-stack">
+          <span class="tag">Python</span><span class="tag">Selenium</span>
+          <span class="tag">BeautifulSoup</span><span class="tag">PyPI</span>
+        </div>
+        <a href="https://pypi.org/project/coursera-scraper/" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.8rem;font-family:var(--mono);font-size:0.65rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em;">pypi.org ↗</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PUBLICATIONS -->
+  <div class="section--flush">
+    <div class="section" id="publications">
+      <div class="label">Publications</div>
+      <h2>Research</h2>
+      <div class="certs-list reveal">
+        <div class="cert-item" style="align-items:flex-start; flex-direction:column; gap:0.75rem; padding: 1.5rem 0;">
+          <div class="cert-left" style="align-items:flex-start; flex-direction:column; gap:0.4rem;">
+            <a href="https://www.ojs.ijemd.com/index.php/ComputerScienceAI/article/view/89" target="_blank" rel="noopener" class="cert-name cert-link" style="font-size:0.97rem; font-weight:500;">
+              Modeling and Verification of Trainify ↗
+            </a>
+            <div style="font-family:var(--mono); font-size:0.7rem; color:var(--accent); letter-spacing:0.08em;">
+              International Journal of Emerging Multidisciplinaries · Sep 2022
+            </div>
+            <p style="font-size:0.85rem; color:var(--muted); line-height:1.7; max-width:720px; margin-top:0.25rem;">
+              Applied formal modeling and verification to a tennis training app, Trainify, using Uppaal. Identified safety-critical modules that could compromise player wellbeing, modelled them as timed automata, and verified correctness properties to ensure no unsafe states could occur during real-time use.
+            </p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.4rem;">
+              <span class="tag">Uppaal</span><span class="tag">System Verification</span>
+              <span class="tag">Formal Modeling</span><span class="tag">Timed Automata</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -990,13 +1058,6 @@
             <div class="cert-name">Introduction to Cyber Security</div>
           </div>
           <div class="cert-issuer">Cisco · Dec 2022</div>
-        </div>
-        <div class="cert-item">
-          <div class="cert-left">
-            <div class="cert-dot"></div>
-            <a href="https://www.ojs.ijemd.com/index.php/ComputerScienceAI/article/view/89" target="_blank" rel="noopener" class="cert-name cert-link">Modeling &amp; Verification of Trainify ↗</a>
-          </div>
-          <div class="cert-issuer">IJEMD · Sep 2022</div>
         </div>
       </div>
     </div>
@@ -1047,7 +1108,7 @@
 </div>
 
 <footer>
-  <span>© 2026 Muhammad Talha Khalid</span>
+  <span>© 2025 Muhammad Talha Khalid</span>
   <span>talhakhalidmtk.me</span>
   <span>Lahore, Pakistan</span>
 </footer>
@@ -1118,15 +1179,5 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HVXK9NSW1E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-HVXK9NSW1E');
-</script>
-
 </body>
 </html>
