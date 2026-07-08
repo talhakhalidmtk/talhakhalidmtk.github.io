@@ -3,10 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammad Talha Khalid - Integration & Backend Engineer</title>
-  <meta name="description" content="Integration & Backend Engineer. MuleSoft Certified. Python, FastAPI, MuleSoft, AWS, Salesforce.">
+  <title>Muhammad Talha Khalid - Integration & Backend Engineer | MuleSoft Certified</title>
+  <meta name="description" content="Muhammad Talha Khalid is an Integration & Backend Engineer and MuleSoft Certified Developer specialising in Python, FastAPI, MuleSoft, AWS, and Salesforce. Founder of Kinlyze. Based in Lahore, Pakistan.">
+  <meta name="keywords" content="Muhammad Talha Khalid, Integration Engineer, Backend Engineer, MuleSoft Developer, MuleSoft Certified, Python Developer, FastAPI, Salesforce Integration, AWS, Kinlyze, Lahore Pakistan">
+  <meta name="author" content="Muhammad Talha Khalid">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0a0f">
+  <link rel="canonical" href="https://talhakhalidmtk.me/">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/images/logo.ico">
+  <link rel="apple-touch-icon" href="assets/images/my-avatar.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Muhammad Talha Khalid">
+  <meta property="og:title" content="Muhammad Talha Khalid - Integration & Backend Engineer">
+  <meta property="og:description" content="Integration & Backend Engineer. MuleSoft Certified. Python, FastAPI, MuleSoft, AWS, Salesforce. Founder of Kinlyze.">
+  <meta property="og:url" content="https://talhakhalidmtk.me/">
+  <meta property="og:image" content="https://talhakhalidmtk.me/assets/images/my-avatar.png">
+  <meta property="profile:first_name" content="Muhammad Talha">
+  <meta property="profile:last_name" content="Khalid">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Muhammad Talha Khalid - Integration & Backend Engineer">
+  <meta name="twitter:description" content="Integration & Backend Engineer. MuleSoft Certified. Python, FastAPI, MuleSoft, AWS, Salesforce. Founder of Kinlyze.">
+  <meta name="twitter:image" content="https://talhakhalidmtk.me/assets/images/my-avatar.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Muhammad Talha Khalid",
+    "url": "https://talhakhalidmtk.me/",
+    "image": "https://talhakhalidmtk.me/assets/images/my-avatar.png",
+    "jobTitle": "Integration & Backend Engineer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Systems Limited"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "National University of Sciences and Technology (NUST)"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lahore",
+      "addressCountry": "PK"
+    },
+    "email": "mailto:talhakhalidmtk@gmail.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/talha-khalid-mtk/",
+      "https://github.com/talhakhalidmtk"
+    ],
+    "knowsAbout": ["MuleSoft", "Anypoint Platform", "Python", "FastAPI", "Salesforce", "Oracle", "AWS", "Integration Engineering", "Backend Development"]
+  }
+  </script>
+
   <style>
     :root {
       --bg:        #0a0a0f;
@@ -74,6 +133,79 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      width: 32px; height: 32px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 20px; height: 2px;
+      background: var(--text);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .skip-link {
+      position: absolute;
+      top: -100px; left: 1rem;
+      z-index: 200;
+      background: var(--accent);
+      color: #0a0a0f;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.6rem 1rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    .back-to-top {
+      position: fixed;
+      right: 1.75rem; bottom: 1.75rem;
+      z-index: 90;
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 50%;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 1rem;
+      text-decoration: none;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.25s, transform 0.25s, border-color 0.2s;
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: auto; transform: none; }
+    .back-to-top:hover { border-color: var(--accent); }
+
+    .proj-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      padding: 0.14rem 0.5rem;
+      border-radius: 2px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .badge-product { background: rgba(56,189,248,0.12); color: var(--accent); border: 1px solid rgba(56,189,248,0.35); }
+    .badge-client  { background: rgba(160,160,184,0.1); color: var(--muted); border: 1px solid var(--border2); }
 
     .nav-cta {
       font-family: var(--mono);
@@ -583,7 +715,26 @@
     /* RESPONSIVE */
     @media (max-width: 860px) {
       nav { padding: 0 1.5rem; }
-      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: flex;
+        position: fixed;
+        top: 62px; left: 0; right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(10,10,15,0.98);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease;
+      }
+      .nav-links.open { max-height: 320px; }
+      .nav-links a {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.85rem;
+      }
       #hero { padding: 7rem 1.5rem 4rem; }
       .section { padding: 4rem 1.5rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -597,6 +748,7 @@
       .proj-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
       .contact-inner { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
       footer { padding: 1.5rem; flex-direction: column; gap: 0.4rem; text-align: center; }
+      .back-to-top { right: 1.25rem; bottom: 1.25rem; width: 38px; height: 38px; }
     }
 
     @media (max-width: 520px) {
@@ -608,15 +760,26 @@
       .cert-item { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
       .cert-issuer { white-space: normal; }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+      #bg-canvas { display: none; }
+    }
   </style>
 </head>
 <body>
 
-<canvas id="bg-canvas"></canvas>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
 <nav>
   <a class="nav-logo" href="#hero">talhakhalidmtk<em>.me</em></a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about">about</a></li>
     <li><a href="#experience">experience</a></li>
     <li><a href="#projects">projects</a></li>
@@ -626,7 +789,7 @@
   <a class="nav-cta" href="mailto:talhakhalidmtk@gmail.com">hire me</a>
 </nav>
 
-<div class="wrapper">
+<div class="wrapper" id="main">
 
   <!-- HERO -->
   <section id="hero">
@@ -896,7 +1059,7 @@
     <!-- KINLYZE FEATURED PRODUCT -->
     <a href="https://www.kinlyze.com/" target="_blank" rel="noopener" class="product-card reveal">
       <div>
-        <div class="product-label">Product · Founder</div>
+        <div class="product-label">Own Product · Founder</div>
         <h3>Kinlyze</h3>
         <p>Code ownership intelligence for engineering teams - maps knowledge concentration risk across a codebase, surfacing bus factor scores and heat maps to help teams prevent knowledge loss when engineers leave. Designed and developed end-to-end - from backend architecture to product delivery.</p>
         <div class="product-url">kinlyze.com ↗</div>
@@ -908,6 +1071,7 @@
 
       <div class="proj-card">
         <div class="proj-num">01</div>
+        <span class="proj-badge badge-client">Client Project</span>
         <h3>Aldar</h3>
         <p>Deployed MuleSoft APIs on CloudHub 1.0 &amp; 2.0 integrating Stripe, Oracle, Salesforce, and the Darna Loyalty Program. Connected iSAMS and PowerSchool SIS platforms across 13 schools with bi-directional real-time data sync.</p>
         <div class="proj-stack">
@@ -920,6 +1084,7 @@
 
       <div class="proj-card">
         <div class="proj-num">02</div>
+        <span class="proj-badge badge-client">Client Project</span>
         <h3>Sapphire</h3>
         <p>Implemented API-led architecture with System, Process, and Experience APIs for customer, coupon, gift card, and logistics management. Integrated Salesforce, OMS Cloud, and Microsoft Dynamics 365.</p>
         <div class="proj-stack">
@@ -931,6 +1096,7 @@
 
       <div class="proj-card">
         <div class="proj-num">03</div>
+        <span class="proj-badge badge-client">Client Project</span>
         <h3>BoilerJuice</h3>
         <p>Integrated Salesforce Bulk API v1 &amp; v2 for legacy database migration. Integrated MySQL and PostgreSQL with object stores and schedulers. Deployed flows on CloudHub 2.0 with custom logging and retry mechanisms.</p>
         <div class="proj-stack">
@@ -943,6 +1109,7 @@
 
       <div class="proj-card">
         <div class="proj-num">04</div>
+        <span class="proj-badge badge-client">Client Project</span>
         <h3>Lumina Forms</h3>
         <p>Integrated Paddle &amp; Polar payment platforms with subscription-based models. Built separate Admin and User dashboards giving admins full subscription visibility and control - including enable/disable per subscription.</p>
         <div class="proj-stack">
@@ -954,6 +1121,7 @@
 
       <div class="proj-card">
         <div class="proj-num">05</div>
+        <span class="proj-badge badge-client">Client Project</span>
         <h3>Moara</h3>
         <p>AI-powered academic research platform connecting scholarly databases with intelligent automation. Built backend with FastAPI, integrated AI-driven document processing, and engineered AWS S3 data pipelines for large-scale literature ingestion.</p>
         <div class="proj-stack">
@@ -965,6 +1133,7 @@
 
       <div class="proj-card">
         <div class="proj-num">06</div>
+        <span class="proj-badge badge-client">Client Project</span>
         <h3>Datatera</h3>
         <p>High-performance web scraping API using FastAPI with async processing for concurrent tasks. Extracts and transforms data from any website into unified schemas. Achieved 80% faster response times than Flask-based alternatives. Deployed on AWS EC2 with JWT authentication.</p>
         <div class="proj-stack">
@@ -976,6 +1145,7 @@
 
       <div class="proj-card">
         <div class="proj-num">07</div>
+        <span class="proj-badge badge-product">Own Product</span>
         <h3>Grepbing EdTech</h3>
         <p>AI-powered e-learning platform with personalised course recommendations, real-time feedback, and collaborative learning. Funded by the Pakistan Engineering Council (PEC). Deployed on AWS with adaptive assessments and dynamic profiling.</p>
         <div class="proj-stack">
@@ -986,6 +1156,7 @@
 
       <div class="proj-card">
         <div class="proj-num">08</div>
+        <span class="proj-badge badge-product">Own Product</span>
         <h3>Coursera Scraper</h3>
         <p>Scraped and structured 400,000+ courses - title, instructor, ratings, categories. Built a fully automated data refresh pipeline and personalised recommendation engine. Reduced manual extraction from weeks to minutes. Published as a PyPI module.</p>
         <div class="proj-stack">
@@ -997,6 +1168,7 @@
 
       <div class="proj-card">
         <div class="proj-num">09</div>
+        <span class="proj-badge badge-product">Own Product</span>
         <h3>MuleScope</h3>
         <p>Open-source Mule runtime log analyzer. Drop in a log file and MuleScope finds every LISTENER and REQUESTER call, rebuilds the request and response, and gives you a Postman-style workspace - plus a real Postman v2.1 collection export.</p>
         <div class="proj-stack">
@@ -1085,29 +1257,29 @@
         <a href="mailto:talhakhalidmtk@gmail.com" class="btn btn-primary">Send an email →</a>
       </div>
       <div>
-        <a href="mailto:talhakhalidmtk@gmail.com" class="clink">
-          <div class="clink-icon">@</div>
+        <a href="mailto:talhakhalidmtk@gmail.com" class="clink" aria-label="Send an email to talhakhalidmtk@gmail.com">
+          <div class="clink-icon" aria-hidden="true">@</div>
           <div class="clink-info">
             <div class="clink-type">Email</div>
             <div class="clink-label">talhakhalidmtk@gmail.com</div>
           </div>
         </a>
-        <a href="https://www.linkedin.com/in/talha-khalid-mtk/" target="_blank" rel="noopener" class="clink">
-          <div class="clink-icon">in</div>
+        <a href="https://www.linkedin.com/in/talha-khalid-mtk/" target="_blank" rel="noopener" class="clink" aria-label="Visit LinkedIn profile talha-khalid-mtk">
+          <div class="clink-icon" aria-hidden="true">in</div>
           <div class="clink-info">
             <div class="clink-type">LinkedIn</div>
             <div class="clink-label">talha-khalid-mtk</div>
           </div>
         </a>
-        <a href="https://github.com/talhakhalidmtk" target="_blank" rel="noopener" class="clink">
-          <div class="clink-icon">gh</div>
+        <a href="https://github.com/talhakhalidmtk" target="_blank" rel="noopener" class="clink" aria-label="Visit GitHub profile talhakhalidmtk">
+          <div class="clink-icon" aria-hidden="true">gh</div>
           <div class="clink-info">
             <div class="clink-type">GitHub</div>
             <div class="clink-label">talhakhalidmtk</div>
           </div>
         </a>
-        <a href="https://wa.me/923217467512" target="_blank" rel="noopener" class="clink">
-          <div class="clink-icon">wa</div>
+        <a href="https://wa.me/923217467512" target="_blank" rel="noopener" class="clink" aria-label="Message on WhatsApp, +92 321 746-7512">
+          <div class="clink-icon" aria-hidden="true">wa</div>
           <div class="clink-info">
             <div class="clink-type">WhatsApp</div>
             <div class="clink-label">+92 321 746-7512</div>
@@ -1120,10 +1292,12 @@
 </div>
 
 <footer>
-  <span>© 2025 Muhammad Talha Khalid</span>
+  <span>© 2026 Muhammad Talha Khalid</span>
   <span>talhakhalidmtk.me</span>
   <span>Lahore, Pakistan</span>
 </footer>
+
+<a href="#hero" class="back-to-top" id="back-to-top" aria-label="Back to top">↑</a>
 
 <script>
 /* NODE CANVAS */
@@ -1190,6 +1364,48 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* MOBILE NAV TOGGLE */
+(function() {
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+})();
+
+/* ACTIVE NAV LINK ON SCROLL */
+(function() {
+  const navAnchors = document.querySelectorAll('.nav-links a');
+  const sections = Array.from(navAnchors)
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+  const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = '#' + entry.target.id;
+      const link = document.querySelector(`.nav-links a[href="${id}"]`);
+      if (!link) return;
+      if (entry.isIntersecting) {
+        navAnchors.forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  sections.forEach(s => navObserver.observe(s));
+})();
+
+/* BACK TO TOP */
+(function() {
+  const btn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 600);
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
